@@ -1,0 +1,19 @@
+时间安排：
+第3-13周（3.2-5.15）完成项目（答辩时间根据外教来华时间再定）
+第14、15周（5.18-5.29）Prof.Worlitz（暂定，外教在华期间 17课时/周）
+第16、17周(6.1-6.12) Prof.Koehn（暂定，外教在华期间 17课时/周）
+每周四 3-8节为课程时间
+
+提交材料：
+任务书、项目海报PPT1张、中文+英文报告各1份、答辩PPT1份、
+视频介绍（整个项目介绍）、资料（海报、中英文报告、视频、图纸或程序或模型等、答辩PPT）刻光盘1张。
+
+相关编程需求：
+1.C/C++基础编程：基础编程，自己可以找
+2.MFC编程：https://www.bilibili.com/video/av20005978?p=5
+3.Unreal编程（C++版）https://www.bilibili.com/video/av65109075/（全英文无字幕）
+4*.人工智能算法： 用tensorflow-gpu 可以用tensorflow cpu 做测试，推荐使用Anaconda环境，配GPU更简单，不能使用虚拟机
+5*.工业编程：Realpars  https://learn.realpars.com/browse（或者在Youtube上Realpars有教程）
+（带星号为自动编程同学的必学项目）
+
+用web技术替换MFC
