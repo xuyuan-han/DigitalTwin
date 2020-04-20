@@ -1,8 +1,0 @@
-prefix=/home/hanxuyuan/Desktop/DigitalTwin/ws_moveit_dt/devel
-
-Name: kuka
-Description: Description of kuka
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
