@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: kuka_urdf
+    relative_path: urdf/kuka_urdf.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/kuka_urdf.srdf
+  CONFIG:
+    author_name: Xuyuan HAN
+    author_email: xuyuan.HAN@outlook.com
+    generated_timestamp: 1587545729
