@@ -1,8 +1,0 @@
-prefix=/home/hanxuyuan/Desktop/DigitalTwin/ws_kuka/devel
-
-Name: kuka_urdf
-Description: Description of kuka_urdf
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
