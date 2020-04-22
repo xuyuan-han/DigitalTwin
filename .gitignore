@@ -1,6 +1,7 @@
 .vscode
 .history
 tags
+devel
 
 # CMake
 CMakeLists.txt.user
