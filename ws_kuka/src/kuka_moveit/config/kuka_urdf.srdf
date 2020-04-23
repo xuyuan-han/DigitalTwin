@@ -18,12 +18,20 @@
         <joint name="Joint6" />
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
-    <group_state name="arm_init_pos" group="robot_arm">
-        <joint name="Joint1" value="-1.5093" />
-        <joint name="Joint2" value="-0.0173" />
-        <joint name="Joint3" value="1.2317" />
-        <joint name="Joint4" value="2.3073" />
-        <joint name="Joint5" value="0" />
+    <group_state name="arm_pos_get" group="robot_arm">
+        <joint name="Joint1" value="-1.6134" />
+        <joint name="Joint2" value="-1.3358" />
+        <joint name="Joint3" value="0.2255" />
+        <joint name="Joint4" value="0" />
+        <joint name="Joint5" value="0.4684" />
+        <joint name="Joint6" value="0" />
+    </group_state>
+    <group_state name="arm_pos_work" group="robot_arm">
+        <joint name="Joint1" value="-2.5502" />
+        <joint name="Joint2" value="-1.3358" />
+        <joint name="Joint3" value="0.3643" />
+        <joint name="Joint4" value="0" />
+        <joint name="Joint5" value="0.6419" />
         <joint name="Joint6" value="0" />
     </group_state>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
