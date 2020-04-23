@@ -24,6 +24,8 @@
 ├── README.md
 └── ws_kuka                   //moveit工作区
     └── src                   //ros源代码
+        ├── kuka_moveit       //使用MoveIt驱动kuka的包
+        └── kuka_urdf         //定义kuka机器人urdf的包
 ```
 
 ## 四、使用说明
