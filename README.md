@@ -39,6 +39,8 @@ make
 roslaunch kuka_moveit demo.launch
 ```
 
+- 如果`plan`后`一直循环显示plan路径`的话，在`rviz`中取消勾选`Displays->MotionPlanning->Planned Path->Loop Animation`
+
 ## 五、参与贡献
 
 | 贡献者 |          邮箱          |
