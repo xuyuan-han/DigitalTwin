@@ -1,0 +1,4 @@
+- git:
+    local-name: warehouse_ros
+    uri: git@gitee.com:x-han/warehouse_ros.git
+    version: jade-devel
