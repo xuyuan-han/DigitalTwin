@@ -36,7 +36,8 @@ cd ws_kuka
 catkin_make
 cd build
 make
-roslaunch kuka_moveit demo.launch
+roslaunch kuka_moveit demo.launch                   //运行kuka的rviz仿真
+rosrun kuka_moveit move_group_interface_tutorial    //运行CPP INTERFACE，用.cpp文件给kuka发送目标位置坐标，在rviz的RvizVisualToolsGui面板中点击next执行下一步动作
 ```
 
 - 如果`plan`后`一直循环显示plan路径`的话，在`rviz`中取消勾选`Displays->MotionPlanning->Planned Path->Loop Animation`
@@ -51,3 +52,9 @@ roslaunch kuka_moveit demo.launch
 |  杨丰  |                        |
 | 臧浩楠 |                        |
 |  周行  |                        |
+
+## 六、待办
+
+1. `move_group_interface_tutorial`中有若干步的目标坐标位置与环境挡板重叠，无法规划路径，需要调节坐标值
+2. 尚未完成ros与plc间通过opcua的通讯
+3. 尚未完成路径规划的效率评估
