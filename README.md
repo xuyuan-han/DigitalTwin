@@ -50,7 +50,7 @@ rosrun kuka_moveit move_group_interface_tutorial    //运行CPP INTERFACE，用.
 | 韩煦源 | xuyuan.HAN@outlook.com |
 | 蒋晗茜 | 1750117@tongji.edu.cn  |
 |  杨丰  |                        |
-| 臧浩楠 |                        |
+| 臧浩楠 |  HAONAN.ZANG@qq.com    |
 |  周行  |                        |
 
 ## 六、待办
