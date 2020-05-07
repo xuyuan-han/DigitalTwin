@@ -8,11 +8,6 @@
 
 * 在网页版 fork 到自己账号下
 * 复制到本地 `git clone 自己账号下仓库`
-* 创建 dev 分支 `git branch dev`
-* 切换到 dev 分支 `git switch dev`
 * 编写, 修改代码
-* 切换到 master 分支 `git checkout master`
-* 将 dev 分支的工作合并到 master 分支上 `git merge dev`
-* 删除 dev 分支 `git branch -d dev`
 * 将修改推送到远程分支上 `git push origin master`
 * 网页版请求主仓库合并
