@@ -55,6 +55,6 @@ rosrun kuka_moveit move_group_interface_tutorial    //运行CPP INTERFACE，用.
 
 ## 六、待办
 
-1. `move_group_interface_tutorial`中有若干步的目标坐标位置与环境挡板重叠，无法规划路径，需要调节坐标值
+1. `move_group_interface_tutorial`中有若干步的目标坐标位置与环境挡板重叠，无法规划路径，需要调节坐标值。还需要用终端或者GUI向CPP INTERFACE发送目标坐标点
 2. 尚未完成ros与plc间通过opcua的通讯
 3. 尚未完成路径规划的效率评估
