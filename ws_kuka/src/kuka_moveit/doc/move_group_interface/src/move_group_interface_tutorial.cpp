@@ -45,6 +45,9 @@
 
 #include <moveit_visual_tools/moveit_visual_tools.h>
 
+double sqrt(double,int);
+double hexToDec(char*);
+
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "move_group_interface");
@@ -120,13 +123,21 @@ int main(int argc, char** argv)
   // We can plan a motion for this group to a desired pose for the
   // end-effector.
   geometry_msgs::Pose target_pose1;
-  target_pose1.orientation.x = 0.69;
-  target_pose1.orientation.y = 0.21;
-  target_pose1.orientation.z = -0.66;
-  target_pose1.orientation.w = 0.2;
-  target_pose1.position.x = 0.36;
-  target_pose1.position.y = -0.75;
-  target_pose1.position.z = 1.27; //初始为0.5
+  // target_pose1.position.x = 0.36;
+  // target_pose1.position.y = -0.75;
+  // target_pose1.position.z = 1.27;
+  // target_pose1.orientation.x = 0.69;
+  // target_pose1.orientation.y = 0.21;
+  // target_pose1.orientation.z = -0.66;
+  // target_pose1.orientation.w = 0.2;
+  
+  target_pose1.position.x = hexToDec(argv[1]);
+  target_pose1.position.y = hexToDec(argv[2]);
+  target_pose1.position.z = hexToDec(argv[3]);
+  target_pose1.orientation.x = hexToDec(argv[4]);
+  target_pose1.orientation.y = hexToDec(argv[5]);
+  target_pose1.orientation.z = hexToDec(argv[6]);
+  target_pose1.orientation.w = hexToDec(argv[7]);
   move_group.setPoseTarget(target_pose1);
 
   // Now, we call the planner to compute the plan and visualize it.
@@ -396,4 +407,44 @@ int main(int argc, char** argv)
 
   ros::shutdown();
   return 0;
+}
+
+double sqrt(double sum,int i)
+{
+  double root = sum;
+  while (i>0,i--)
+    sum *= root;
+  return sum;
+}
+ 
+double hexToDec(char *str)
+{
+  int i = 0;
+  float sumd = 0.0;
+  double sumf = 0.0;
+  bool negative = false;
+  bool error = false;
+ 
+  for (; *str; str++) {
+    if (*str == '-') {
+      negative = true;
+      continue;
+    }
+    if (*str == '.') {
+      error = true;
+      continue;
+    }
+    if (error){
+      sumf = sumf + (*str - '0')/sqrt(10.0,i);
+      i++;
+    }
+    else {
+      sumd = 10.0 * sumd + (*str - '0');
+    }
+  }
+  if (negative)
+    sumd = -(sumd + sumf);
+  else
+    sumd += sumf;
+  return sumd;
 }
