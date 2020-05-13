@@ -33,3 +33,9 @@ controller_list:
       - Joint4
       - Joint5
       - Joint6
+  - name: hand_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      Joint6

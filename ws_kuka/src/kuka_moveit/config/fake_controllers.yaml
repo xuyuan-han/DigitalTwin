@@ -7,3 +7,6 @@ controller_list:
       - Joint4
       - Joint5
       - Joint6
+  - name: fake_hand_controller
+    joints:
+      - Joint6

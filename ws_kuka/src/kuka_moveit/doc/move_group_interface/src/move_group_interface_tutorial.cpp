@@ -47,7 +47,7 @@
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "move_group_interface_tutorial");
+  ros::init(argc, argv, "move_group_interface");
   ros::NodeHandle node_handle;
   ros::AsyncSpinner spinner(1);
   spinner.start();
@@ -120,10 +120,13 @@ int main(int argc, char** argv)
   // We can plan a motion for this group to a desired pose for the
   // end-effector.
   geometry_msgs::Pose target_pose1;
-  target_pose1.orientation.w = 0;
-  target_pose1.position.x = 0;
-  target_pose1.position.y = 0;
-  target_pose1.position.z = 0; //初始为0.5
+  target_pose1.orientation.x = 0.69;
+  target_pose1.orientation.y = 0.21;
+  target_pose1.orientation.z = -0.66;
+  target_pose1.orientation.w = 0.2;
+  target_pose1.position.x = 0.36;
+  target_pose1.position.y = -0.75;
+  target_pose1.position.z = 1.27; //初始为0.5
   move_group.setPoseTarget(target_pose1);
 
   // Now, we call the planner to compute the plan and visualize it.
