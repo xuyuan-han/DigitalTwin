@@ -118,6 +118,70 @@ int main(int argc, char** argv)
   // visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to start the demo");
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Adding/Removing Objects and Attaching/Detaching Objects
+  // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  //
+  // Define a collision object ROS message.
+  moveit_msgs::CollisionObject collision_object;
+  collision_object.header.frame_id = move_group.getPlanningFrame();
+
+  // The id of the object is used to identify it.
+  collision_object.id = "box1";
+
+  // Define a box to add to the world.
+  shape_msgs::SolidPrimitive primitive;
+  primitive.type = primitive.BOX;
+  primitive.dimensions.resize(3);
+  primitive.dimensions[0] = 0.3;
+  primitive.dimensions[1] = 0.1;
+  primitive.dimensions[2] = 0.3;
+
+  // Define a pose for the box (specified relative to frame_id)
+  geometry_msgs::Pose box_pose;
+  box_pose.orientation.w = 1.0;
+  box_pose.position.x = 0.2;
+  box_pose.position.y = -0.8;
+  box_pose.position.z = 1.0;
+
+  collision_object.primitives.push_back(primitive);
+  collision_object.primitive_poses.push_back(box_pose);
+  collision_object.operation = collision_object.ADD;
+
+  std::vector<moveit_msgs::CollisionObject> collision_objects;
+  collision_objects.push_back(collision_object);
+
+  // Now, let's add the collision object into the world
+  ROS_INFO_NAMED("tutorial", "Add an object into the world");
+  planning_scene_interface.addCollisionObjects(collision_objects);
+
+
+
+
+
+
+
+
+
+
+
 //------------------------------------------------First Step-------------------------------------------------------
   // Planning to a Pose goal
   // ^^^^^^^^^^^^^^^^^^^^^^^
@@ -126,48 +190,48 @@ int main(int argc, char** argv)
   geometry_msgs::Pose target_pose1;
   
   std::string answer;
-  while(1){
 
-  while(1){
+  while (true) {
     std::cout << "\n--------------------------------------------------------------------------------" << std::endl;
     std::cout << "> Do you want to use an already programmed target pose?(yes/no) " << std::endl;
     std::cin >> answer;
-    if(answer=="yes"||answer=="y"){
-      while(1){
-        answer.clear();
-        std::cout << "> Which target do you wang to use? \n> Please type in only the sequence number" << std::endl;
-        std::cout << ">> 1. arm_pos_get" << std::endl;
-        std::cout << ">> 2. arm_pos_work" << std::endl;
-        std::cin >> answer;
-        if(answer=="1"){        //arm_pos_get
-          target_pose1.position.x = 0.81;
-          target_pose1.position.y = -0.96;
-          target_pose1.position.z = 1.24;
-          target_pose1.orientation.w = 0.49;
-          target_pose1.orientation.x = 0.51;
-          target_pose1.orientation.y = 0.49;
-          target_pose1.orientation.z = -0.51;
-          answer.clear();
-          break;
-        }
-        else if(answer=="2"){   //arm_pos_work
-          target_pose1.position.x = 0.36;
-          target_pose1.position.y = -0.75;
-          target_pose1.position.z = 1.27;
-          target_pose1.orientation.w = 0.2;
-          target_pose1.orientation.x = 0.69;
-          target_pose1.orientation.y = 0.21;
-          target_pose1.orientation.z = -0.66;
-          answer.clear();
-          break;
-        }
-        else{
-          std::cout << "> !!! Invalid answer, please try again. ";
-        }
-      }
+    if ("0" == answer) {
       break;
     }
-    else if (answer=="no"||answer=="n"){
+
+    if(answer=="yes"||answer=="y"){
+
+      answer.clear();
+      std::cout << "> Which target do you wang to use? \n> Please type in only the sequence number" << std::endl;
+      std::cout << ">> 1. arm_pos_get" << std::endl;
+      std::cout << ">> 2. arm_pos_work" << std::endl;
+      std::cin >> answer;
+      if (answer=="1"){        //arm_pos_get
+        target_pose1.position.x = 0.81;
+        target_pose1.position.y = -0.96;
+        target_pose1.position.z = 1.24;
+        target_pose1.orientation.w = 0.49;
+        target_pose1.orientation.x = 0.51;
+        target_pose1.orientation.y = 0.49;
+        target_pose1.orientation.z = -0.51;
+        answer.clear();
+
+      } else if(answer=="2") {   //arm_pos_work
+        target_pose1.position.x = 0.36;
+        target_pose1.position.y = -0.75;
+        target_pose1.position.z = 1.27;
+        target_pose1.orientation.w = 0.2;
+        target_pose1.orientation.x = 0.69;
+        target_pose1.orientation.y = 0.21;
+        target_pose1.orientation.z = -0.66;
+        answer.clear();
+
+      } else{
+        std::cout << "> !!! Invalid answer, please try again. ";
+      }
+
+      
+    } else if (answer=="no"||answer=="n") {
       answer.clear();
       std::cout << "> 请输入目标点x坐标：";
       std::cin >> target_pose1.position.x;
@@ -196,46 +260,46 @@ int main(int argc, char** argv)
       std::cout << "> 请输入目标点z方向：";
       std::cin >> target_pose1.orientation.z;
       // std::cout << "您输入目标点z方向是：" << target_pose1.orientation.z << std::endl;
-      break;
-    }
-    else{
+    } else{
       std::cout << "> !!! Invalid answer, please try again. ";
       answer.clear();
     }
-  }
-  move_group.setPoseTarget(target_pose1);
 
-  // Now, we call the planner to compute the plan and visualize it.
-  // Note that we are just planning, not asking move_group
-  // to actually move the robot.
-  moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-  bool success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
 
-  ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
 
-  // Visualizing plans
-  // ^^^^^^^^^^^^^^^^^
-  // We can also visualize the plan as a line with markers in RViz.
-  ROS_INFO_NAMED("tutorial", "Visualizing plan 1 as trajectory line");
-  visual_tools.publishAxisLabeled(target_pose1, "pose1");
-  visual_tools.publishText(text_pose, "Pose Goal", rvt::WHITE, rvt::XLARGE);
-  visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group);
-  visual_tools.trigger();
-  // visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
+    move_group.setPoseTarget(target_pose1);
 
-  // Moving to a pose goal
-  // ^^^^^^^^^^^^^^^^^^^^^
-  //
-  // Moving to a pose goal is similar to the step above
-  // except we now use the move() function. Note that
-  // the pose goal we had set earlier is still active
-  // and so the robot will try to move to that goal. We will
-  // not use that function in this tutorial since it is
-  // a blocking function and requires a controller to be active
-  // and report success on execution of a trajectory.
+    // Now, we call the planner to compute the plan and visualize it.
+    // Note that we are just planning, not asking move_group
+    // to actually move the robot.
+    moveit::planning_interface::MoveGroupInterface::Plan my_plan;
+    bool success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
 
-  /* Uncomment below line when working with a real robot */
-  move_group.move();
+    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
+
+    // Visualizing plans
+    // ^^^^^^^^^^^^^^^^^
+    // We can also visualize the plan as a line with markers in RViz.
+    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 as trajectory line");
+    visual_tools.publishAxisLabeled(target_pose1, "pose1");
+    visual_tools.publishText(text_pose, "Pose Goal", rvt::WHITE, rvt::XLARGE);
+    visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group);
+    visual_tools.trigger();
+    // visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
+
+    // Moving to a pose goal
+    // ^^^^^^^^^^^^^^^^^^^^^
+    //
+    // Moving to a pose goal is similar to the step above
+    // except we now use the move() function. Note that
+    // the pose goal we had set earlier is still active
+    // and so the robot will try to move to that goal. We will
+    // not use that function in this tutorial since it is
+    // a blocking function and requires a controller to be active
+    // and report success on execution of a trajectory.
+
+    /* Uncomment below line when working with a real robot */
+    move_group.move();
   }
 // 
 
