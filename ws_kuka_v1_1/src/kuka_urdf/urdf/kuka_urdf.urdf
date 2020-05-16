@@ -8,17 +8,17 @@
     name="base_link">
     <inertial>
       <origin
-        xyz="0.594999519696072 -0.428271085756606 1.10982738925822"
+        xyz="0.59499946774732 1.10982733773241 0.428271087761206"
         rpy="0 0 0" />
       <mass
-        value="170.009626249841" />
+        value="170.00957643814" />
       <inertia
-        ixx="15.423191189605"
-        ixy="-0.769988015650323"
-        ixz="-0.334753403251733"
-        iyy="21.0934964927137"
-        iyz="-0.217841140427877"
-        izz="14.6780515524527" />
+        ixx="15.4231911818268"
+        ixy="-0.334753366098497"
+        ixz="0.769988015661921"
+        iyy="14.6780515806803"
+        iyz="0.217841138291501"
+        izz="21.0934965093949" />
     </inertial>
     <visual>
       <origin
@@ -45,7 +45,7 @@
     </collision>
   </link>
   <link
-    name="Link1">
+    name="link1">
     <inertial>
       <origin
         xyz="0.00796741917398325 0.00201869055885101 0.115718073498994"
@@ -54,7 +54,7 @@
         value="6.27526433045052" />
       <inertia
         ixx="0.0762054973038654"
-        ixy="9.82188144569927E-06"
+        ixy="9.82188144569928E-06"
         ixz="-0.00530053527199465"
         iyy="0.0500772495062891"
         iyz="-0.00051503963743002"
@@ -66,7 +66,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link1.STL" />
+          filename="package://kuka_urdf/meshes/link1.STL" />
       </geometry>
       <material
         name="">
@@ -80,12 +80,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link1.STL" />
+          filename="package://kuka_urdf/meshes/link1.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="Joint1"
+    name="joint1"
     type="revolute">
     <origin
       xyz="0.8275 -0.43219 1.3595"
@@ -93,7 +93,7 @@
     <parent
       link="base_link" />
     <child
-      link="Link1" />
+      link="link1" />
     <axis
       xyz="0 0 1" />
     <limit
@@ -103,17 +103,17 @@
       velocity="2" />
   </joint>
   <link
-    name="Link2">
+    name="link2">
     <inertial>
       <origin
-        xyz="-0.00525474427373662 -0.00581945166654135 0.131443823398878"
+        xyz="-0.00525474427373673 -0.00581945166654141 0.131443823398878"
         rpy="0 0 0" />
       <mass
         value="7.36258419830385" />
       <inertia
         ixx="0.151415780044457"
-        ixy="-1.49717820004801E-05"
-        ixz="0.000868975891906839"
+        ixy="-1.49717820004797E-05"
+        ixz="0.00086897589190684"
         iyy="0.135639503717904"
         iyz="0.00168356968157077"
         izz="0.0384883579896224" />
@@ -124,7 +124,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link2.STL" />
+          filename="package://kuka_urdf/meshes/link2.STL" />
       </geometry>
       <material
         name="">
@@ -138,20 +138,20 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link2.STL" />
+          filename="package://kuka_urdf/meshes/link2.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="Joint2"
+    name="joint2"
     type="revolute">
     <origin
       xyz="0.025 0 0.183"
       rpy="0 0 0" />
     <parent
-      link="Link1" />
+      link="link1" />
     <child
-      link="Link2" />
+      link="link2" />
     <axis
       xyz="0 -1 0" />
     <limit
@@ -161,7 +161,7 @@
       velocity="2" />
   </joint>
   <link
-    name="Link3">
+    name="link3">
     <inertial>
       <origin
         xyz="0.0158897369187757 0.00377551618976696 0.0103622040607538"
@@ -170,7 +170,7 @@
         value="2.90698496734874" />
       <inertia
         ixx="0.00835937630352446"
-        ixy="3.52504576818561E-05"
+        ixy="3.52504576818562E-05"
         ixz="-0.00140858847686176"
         iyy="0.0112132449448129"
         iyz="1.88954255172526E-05"
@@ -182,7 +182,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link3.STL" />
+          filename="package://kuka_urdf/meshes/link3.STL" />
       </geometry>
       <material
         name="">
@@ -196,20 +196,20 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link3.STL" />
+          filename="package://kuka_urdf/meshes/link3.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="Joint3"
+    name="joint3"
     type="revolute">
     <origin
       xyz="0 0 0.315"
       rpy="0 0 0" />
     <parent
-      link="Link2" />
+      link="link2" />
     <child
-      link="Link3" />
+      link="link3" />
     <axis
       xyz="0 -1 0" />
     <limit
@@ -219,7 +219,7 @@
       velocity="2" />
   </joint>
   <link
-    name="Link4">
+    name="link4">
     <inertial>
       <origin
         xyz="0.123981724214701 0.0034688211324434 0.000289159358459745"
@@ -229,7 +229,7 @@
       <inertia
         ixx="0.00584711964625554"
         ixy="-0.000156323136874247"
-        ixz="5.19522467907691E-06"
+        ixz="5.19522467907712E-06"
         iyy="0.0156113113263976"
         iyz="1.44373593566698E-05"
         izz="0.0172713088405886" />
@@ -240,7 +240,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link4.STL" />
+          filename="package://kuka_urdf/meshes/link4.STL" />
       </geometry>
       <material
         name="">
@@ -254,20 +254,20 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link4.STL" />
+          filename="package://kuka_urdf/meshes/link4.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="Joint4"
+    name="joint4"
     type="revolute">
     <origin
       xyz="0.10695 0.003 0.035"
       rpy="0 0 0" />
     <parent
-      link="Link3" />
+      link="link3" />
     <child
-      link="Link4" />
+      link="link4" />
     <axis
       xyz="-1 0 0" />
     <limit
@@ -277,7 +277,7 @@
       velocity="2" />
   </joint>
   <link
-    name="Link5">
+    name="link5">
     <inertial>
       <origin
         xyz="0.0157891702201669 0.0019136754426482 -3.03958143461625E-05"
@@ -298,7 +298,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link5.STL" />
+          filename="package://kuka_urdf/meshes/link5.STL" />
       </geometry>
       <material
         name="">
@@ -312,20 +312,20 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link5.STL" />
+          filename="package://kuka_urdf/meshes/link5.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="Joint5"
+    name="joint5"
     type="revolute">
     <origin
       xyz="0.25805 0 0"
       rpy="0 0 0" />
     <parent
-      link="Link4" />
+      link="link4" />
     <child
-      link="Link5" />
+      link="link5" />
     <axis
       xyz="0 1 0" />
     <limit
@@ -335,7 +335,7 @@
       velocity="2" />
   </joint>
   <link
-    name="Link6">
+    name="link6">
     <inertial>
       <origin
         xyz="0.005980331956146 2.77555756156289E-16 4.3140731314173E-05"
@@ -344,10 +344,10 @@
         value="0.0139949492210214" />
       <inertia
         ixx="3.02502810414478E-06"
-        ixy="-3.73225880560227E-21"
-        ixz="-8.5605586665465E-10"
+        ixy="-3.73194047836028E-21"
+        ixz="-8.56055866654648E-10"
         iyy="1.71731248188302E-06"
-        iyz="1.07125006063243E-22"
+        iyz="1.07107163474966E-22"
         izz="1.70788961196181E-06" />
     </inertial>
     <visual>
@@ -356,7 +356,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link6.STL" />
+          filename="package://kuka_urdf/meshes/link6.STL" />
       </geometry>
       <material
         name="">
@@ -370,20 +370,20 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kuka_urdf/meshes/Link6.STL" />
+          filename="package://kuka_urdf/meshes/link6.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="Joint6"
+    name="joint6"
     type="revolute">
     <origin
       xyz="0.0665 0 0"
       rpy="0 0 0" />
     <parent
-      link="Link5" />
+      link="link5" />
     <child
-      link="Link6" />
+      link="link6" />
     <axis
       xyz="1 0 0" />
     <limit
