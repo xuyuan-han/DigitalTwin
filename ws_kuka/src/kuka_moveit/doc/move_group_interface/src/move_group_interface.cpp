@@ -126,7 +126,7 @@ int main(int argc, char** argv)
   geometry_msgs::Pose target_pose1;
   
   std::string answer;
-  while(1){
+  /*
 
   while(1){
     std::cout << "\n--------------------------------------------------------------------------------" << std::endl;
@@ -234,10 +234,52 @@ int main(int argc, char** argv)
   // a blocking function and requires a controller to be active
   // and report success on execution of a trajectory.
 
-  /* Uncomment below line when working with a real robot */
+  // Uncomment below line when working with a real robot //
   move_group.move();
-  }
+  */
 // 
+
+
+
+//                          add new object
+// Define a collision object ROS message.
+  moveit_msgs::CollisionObject collision_object;
+  collision_object.header.frame_id = move_group.getPlanningFrame();
+
+  // The id of the object is used to identify it.
+  collision_object.id = "box1";
+
+  // Define a box to add to the world.
+  shape_msgs::SolidPrimitive primitive;
+  primitive.type = primitive.BOX;
+  primitive.dimensions.resize(3);
+  primitive.dimensions[0] = 0.085;//0.095
+  primitive.dimensions[1] = 0.19;//0.2
+  primitive.dimensions[2] = 0.1;
+
+  // Define a pose for the box (specified relative to frame_id)
+  geometry_msgs::Pose box_pose;
+  box_pose.orientation.w = 1.0;
+  box_pose.position.x = 0.35;
+  box_pose.position.y = -0.25;
+  box_pose.position.z = 1.524;
+
+  collision_object.primitives.push_back(primitive);
+  collision_object.primitive_poses.push_back(box_pose);
+  collision_object.operation = collision_object.ADD;
+
+  std::vector<moveit_msgs::CollisionObject> collision_objects;
+  collision_objects.push_back(collision_object);
+
+  // Now, let's add the collision object into the world
+  ROS_INFO_NAMED("tutorial", "Add an object into the world");
+  planning_scene_interface.addCollisionObjects(collision_objects);
+
+  // Show text in RViz of status
+  visual_tools.publishText(text_pose, "Add object", rvt::WHITE, rvt::XLARGE);
+  visual_tools.trigger();
+
+
 
   ros::shutdown();
   return 0;
