@@ -149,7 +149,7 @@ robot_arm:
   projection_evaluator: joints(Joint1,Joint2)
   longest_valid_segment_fraction: 0.005
 hand:
-  default_planner_config: None
+  default_planner_config: ""
   planner_configs:
     - SBL
     - EST
