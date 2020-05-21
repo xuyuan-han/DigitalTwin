@@ -48,6 +48,7 @@
 
 double sqrt(double,int);
 double hexToDec(char*);
+std::string xxxx;
 
 int main(int argc, char** argv)
 {
@@ -118,6 +119,12 @@ int main(int argc, char** argv)
   // visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to start the demo");
 
 
+
+
+/*
+
+
+
 //------------------------------------------------First Step-------------------------------------------------------
   // Planning to a Pose goal
   // ^^^^^^^^^^^^^^^^^^^^^^^
@@ -126,8 +133,8 @@ int main(int argc, char** argv)
   geometry_msgs::Pose target_pose1;
   
   std::string answer;
-  /*
-
+  
+  
   while(1){
     std::cout << "\n--------------------------------------------------------------------------------" << std::endl;
     std::cout << "> Do you want to use an already programmed target pose?(yes/no) " << std::endl;
@@ -140,13 +147,13 @@ int main(int argc, char** argv)
         std::cout << ">> 2. arm_pos_work" << std::endl;
         std::cin >> answer;
         if(answer=="1"){        //arm_pos_get
-          target_pose1.position.x = 0.81;
-          target_pose1.position.y = -0.96;
-          target_pose1.position.z = 1.24;
-          target_pose1.orientation.w = 0.49;
-          target_pose1.orientation.x = 0.51;
-          target_pose1.orientation.y = 0.49;
-          target_pose1.orientation.z = -0.51;
+          target_pose1.position.x = 0.81;//0.81
+          target_pose1.position.y = -0.96;//-0.96
+          target_pose1.position.z = 1.24;//1.24
+          target_pose1.orientation.w = 0.49;//0.49
+          target_pose1.orientation.x = 0.51;//0.51
+          target_pose1.orientation.y = 0.49;//0.49
+          target_pose1.orientation.z = -0.51;//-0.51
           answer.clear();
           break;
         }
@@ -236,13 +243,15 @@ int main(int argc, char** argv)
 
   // Uncomment below line when working with a real robot //
   move_group.move();
-  */
-// 
 
+
+*/
 
 
 //                          add new object
 // Define a collision object ROS message.
+  std::cout << "any keyword" << std::endl;
+  std::cin >> xxxx;
   moveit_msgs::CollisionObject collision_object;
   collision_object.header.frame_id = move_group.getPlanningFrame();
 
@@ -278,6 +287,63 @@ int main(int argc, char** argv)
   // Show text in RViz of status
   visual_tools.publishText(text_pose, "Add object", rvt::WHITE, rvt::XLARGE);
   visual_tools.trigger();
+
+
+
+  //                                move the robot to the object
+  std::cout << "any keyword" << std::endl;
+  std::cin >> xxxx;
+  moveit::planning_interface::MoveGroupInterface::Plan my_plan2;
+  move_group.setStartState(*move_group.getCurrentState());
+  geometry_msgs::Pose object_pose;
+  object_pose.orientation.w = 0.263555;//0.263555
+  object_pose.orientation.x = -0.547637;//-0.547637
+  object_pose.orientation.y = 0.257702;//0.257702
+  object_pose.orientation.z = 0.751147;//0.751147
+  object_pose.position.x = 0.379765;//0.379765
+  object_pose.position.y = -0.24068;//-0.24068
+  object_pose.position.z = 1.62333;//1.62333
+  move_group.setPoseTarget(object_pose);
+  
+ 
+  bool success2 = (move_group.plan(my_plan2) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+  ROS_INFO_NAMED("tutorial", "move robot to the object %s", success2 ? "" : "FAILED");
+  // Visualize the plan in RViz
+  visual_tools.deleteAllMarkers();
+  visual_tools.publishText(text_pose, "Obstacle Goal", rvt::WHITE, rvt::XLARGE);
+  visual_tools.publishTrajectoryLine(my_plan2.trajectory_, joint_model_group);
+  visual_tools.trigger();
+  move_group.move();
+  
+
+
+  //                             attach the object
+  // Now, let's attach the collision object to the robot.
+  std::cout << "any keyword" << std::endl;
+  std::cin >> xxxx;
+  ROS_INFO_NAMED("tutorial","Attach the object to the robot");
+  move_group.attachObject(collision_object.id);
+
+  // Show text in RViz of status
+  visual_tools.publishText(text_pose, "Object attached to robot", rvt::WHITE, rvt::XLARGE);
+  visual_tools.trigger();
+
+
+
+
+
+  //                           detach the object
+  // Now, let's detach the collision object from the robot.
+  std::cout << "any keyword" << std::endl;
+  std::cin >> xxxx;
+  ROS_INFO_NAMED("tutorial", "Detach the object from the robot");
+  move_group.detachObject(collision_object.id);
+
+  // Show text in RViz of status
+  visual_tools.publishText(text_pose, "Object dettached from robot", rvt::WHITE, rvt::XLARGE);
+  visual_tools.trigger();
+
+
 
 
 

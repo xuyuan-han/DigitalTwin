@@ -53,6 +53,14 @@
         <joint name="Joint5" value="0" />
         <joint name="Joint6" value="0" />
     </group_state>
+    <group_state name="pose_object" group="robot_arm">
+        <joint name="Joint1" value="2.7312" />
+        <joint name="Joint2" value="-0.353" />
+        <joint name="Joint3" value="-0.1672" />
+        <joint name="Joint4" value="0" />
+        <joint name="Joint5" value="0.7618" />
+        <joint name="Joint6" value="0.353" />
+    </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="hand" parent_link="Link6" group="hand" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
