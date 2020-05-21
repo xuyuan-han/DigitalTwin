@@ -48,6 +48,7 @@
 
 double sqrt(double,int);
 double hexToDec(char*);
+std::string xxxx;
 
 int main(int argc, char** argv)
 {
@@ -211,35 +212,31 @@ int main(int argc, char** argv)
       std::cout << ">> 2. arm_pos_work" << std::endl;
       std::cout << ">> 3. catch" << std::endl;
       std::cin >> answer;
-      if (answer=="1"){        //arm_pos_get
-        target_pose1.position.x = 0.302649;
-        target_pose1.position.y = -0.844465;
-        target_pose1.position.z = 1.24846;
-        target_pose1.orientation.w = 0.709535;
-        target_pose1.orientation.x = -0.0456164;
-        target_pose1.orientation.y = 0.69458;
-        target_pose1.orientation.z = -0.10972;
-        answer.clear();
 
-      } else if(answer=="2") {   //arm_pos_work
-        target_pose1.position.x = 0.865833;
-        target_pose1.position.y = -0.89405;
+
+      if(answer=="1"){        //arm_pos_get
+        target_pose1.position.x = 0.81;//0.81
+        target_pose1.position.y = -0.96;//-0.96
+        target_pose1.position.z = 1.24;//1.24
+        target_pose1.orientation.w = 0.49;//0.49
+        target_pose1.orientation.x = 0.51;//0.51
+        target_pose1.orientation.y = 0.49;//0.49
+        target_pose1.orientation.z = -0.51;//-0.51
+        answer.clear();
+        break;
+      }
+      else if(answer=="2"){   //arm_pos_work
+        target_pose1.position.x = 0.36;
+        target_pose1.position.y = -0.75;
         target_pose1.position.z = 1.27;
-        target_pose1.orientation.w = 0.709512;
-        target_pose1.orientation.x = -0.0456613;
-        target_pose1.orientation.y = 0.694586;
-        target_pose1.orientation.z = -0.109814;
+        target_pose1.orientation.w = 0.2;
+        target_pose1.orientation.x = 0.69;
+        target_pose1.orientation.y = 0.21;
+        target_pose1.orientation.z = -0.66;
         answer.clear();
-
-      } else if ("3" == answer)  {
-          move_group.attachObject(collision_object.id);
-
-
-      } else if ("4" == answer)  {
-          move_group.detachObject(collision_object.id);
-
-
-      } else{
+        break;
+      }
+      else{
         std::cout << "> !!! Invalid answer, please try again. ";
       }
 
@@ -280,43 +277,122 @@ int main(int argc, char** argv)
 
 
 
-    move_group.setPoseTarget(target_pose1);
+  // Moving to a pose goal
+  // ^^^^^^^^^^^^^^^^^^^^^
+  //
+  // Moving to a pose goal is similar to the step above
+  // except we now use the move() function. Note that
+  // the pose goal we had set earlier is still active
+  // and so the robot will try to move to that goal. We will
+  // not use that function in this tutorial since it is
+  // a blocking function and requires a controller to be active
+  // and report success on execution of a trajectory.
 
-    // Now, we call the planner to compute the plan and visualize it.
-    // Note that we are just planning, not asking move_group
-    // to actually move the robot.
-    moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-    bool success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
-
-    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
-
-    // Visualizing plans
-    // ^^^^^^^^^^^^^^^^^
-    // We can also visualize the plan as a line with markers in RViz.
-    ROS_INFO_NAMED("tutorial", "Visualizing plan 1 as trajectory line");
-    visual_tools.publishAxisLabeled(target_pose1, "pose1");
-    visual_tools.publishText(text_pose, "Pose Goal", rvt::WHITE, rvt::XLARGE);
-    visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group);
-    visual_tools.trigger();
-    // visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
-
-    // Moving to a pose goal
-    // ^^^^^^^^^^^^^^^^^^^^^
-    //
-    // Moving to a pose goal is similar to the step above
-    // except we now use the move() function. Note that
-    // the pose goal we had set earlier is still active
-    // and so the robot will try to move to that goal. We will
-    // not use that function in this tutorial since it is
-    // a blocking function and requires a controller to be active
-    // and report success on execution of a trajectory.
-
-    /* Uncomment below line when working with a real robot */
-    move_group.move();
-  }
+  // Uncomment below line when working with a real robot //
+  move_group.move();
 
 
-// 
+
+
+
+//                          add new object
+// Define a collision object ROS message.
+  std::cout << "next" << std::endl;
+  std::cin >> xxxx;
+  moveit_msgs::CollisionObject collision_object;
+  collision_object.header.frame_id = move_group.getPlanningFrame();
+
+  // The id of the object is used to identify it.
+  collision_object.id = "box1";
+
+  // Define a box to add to the world.
+  shape_msgs::SolidPrimitive primitive;
+  primitive.type = primitive.BOX;
+  primitive.dimensions.resize(3);
+  primitive.dimensions[0] = 0.085;//0.095
+  primitive.dimensions[1] = 0.19;//0.2
+  primitive.dimensions[2] = 0.1;
+
+  // Define a pose for the box (specified relative to frame_id)
+  geometry_msgs::Pose box_pose;
+  box_pose.orientation.w = 1.0;
+  box_pose.position.x = 0.35;
+  box_pose.position.y = -0.25;
+  box_pose.position.z = 1.524;
+
+  collision_object.primitives.push_back(primitive);
+  collision_object.primitive_poses.push_back(box_pose);
+  collision_object.operation = collision_object.ADD;
+
+  std::vector<moveit_msgs::CollisionObject> collision_objects;
+  collision_objects.push_back(collision_object);
+
+  // Now, let's add the collision object into the world
+  ROS_INFO_NAMED("tutorial", "Add an object into the world");
+  planning_scene_interface.addCollisionObjects(collision_objects);
+
+  // Show text in RViz of status
+  visual_tools.publishText(text_pose, "Add object", rvt::WHITE, rvt::XLARGE);
+  visual_tools.trigger();
+
+
+
+  //                                move the robot to the object
+  std::cout << "next" << std::endl;
+  std::cin >> xxxx;
+  moveit::planning_interface::MoveGroupInterface::Plan my_plan2;
+  move_group.setStartState(*move_group.getCurrentState());
+  geometry_msgs::Pose object_pose;
+  object_pose.orientation.w = 0.263555;//0.263555
+  object_pose.orientation.x = -0.547637;//-0.547637
+  object_pose.orientation.y = 0.257702;//0.257702
+  object_pose.orientation.z = 0.751147;//0.751147
+  object_pose.position.x = 0.379765;//0.379765
+  object_pose.position.y = -0.24068;//-0.24068
+  object_pose.position.z = 1.62333;//1.62333
+  move_group.setPoseTarget(object_pose);
+  
+ 
+  bool success2 = (move_group.plan(my_plan2) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+  ROS_INFO_NAMED("tutorial", "move robot to the object %s", success2 ? "" : "FAILED");
+  // Visualize the plan in RViz
+  visual_tools.deleteAllMarkers();
+  visual_tools.publishText(text_pose, "Obstacle Goal", rvt::WHITE, rvt::XLARGE);
+  visual_tools.publishTrajectoryLine(my_plan2.trajectory_, joint_model_group);
+  visual_tools.trigger();
+  move_group.move();
+  
+
+
+  //                             attach the object
+  // Now, let's attach the collision object to the robot.
+  std::cout << "next" << std::endl;
+  std::cin >> xxxx;
+  ROS_INFO_NAMED("tutorial","Attach the object to the robot");
+  move_group.attachObject(collision_object.id);
+
+  // Show text in RViz of status
+  visual_tools.publishText(text_pose, "Object attached to robot", rvt::WHITE, rvt::XLARGE);
+  visual_tools.trigger();
+
+
+
+
+
+  //                           detach the object
+  // Now, let's detach the collision object from the robot.
+  std::cout << "next" << std::endl;
+  std::cin >> xxxx;
+  ROS_INFO_NAMED("tutorial", "Detach the object from the robot");
+  move_group.detachObject(collision_object.id);
+
+  // Show text in RViz of status
+  visual_tools.publishText(text_pose, "Object dettached from robot", rvt::WHITE, rvt::XLARGE);
+  visual_tools.trigger();
+
+
+
+
 
   ros::shutdown();
   return 0;
