@@ -182,6 +182,8 @@ int main(int argc, char** argv)
 
 
 
+
+
 //------------------------------------------------First Step-------------------------------------------------------
   // Planning to a Pose goal
   // ^^^^^^^^^^^^^^^^^^^^^^^
@@ -199,32 +201,43 @@ int main(int argc, char** argv)
       break;
     }
 
+
     if(answer=="yes"||answer=="y"){
+
 
       answer.clear();
       std::cout << "> Which target do you wang to use? \n> Please type in only the sequence number" << std::endl;
       std::cout << ">> 1. arm_pos_get" << std::endl;
       std::cout << ">> 2. arm_pos_work" << std::endl;
+      std::cout << ">> 3. catch" << std::endl;
       std::cin >> answer;
       if (answer=="1"){        //arm_pos_get
-        target_pose1.position.x = 0.81;
-        target_pose1.position.y = -0.96;
-        target_pose1.position.z = 1.24;
-        target_pose1.orientation.w = 0.49;
-        target_pose1.orientation.x = 0.51;
-        target_pose1.orientation.y = 0.49;
-        target_pose1.orientation.z = -0.51;
+        target_pose1.position.x = 0.302649;
+        target_pose1.position.y = -0.844465;
+        target_pose1.position.z = 1.24846;
+        target_pose1.orientation.w = 0.709535;
+        target_pose1.orientation.x = -0.0456164;
+        target_pose1.orientation.y = 0.69458;
+        target_pose1.orientation.z = -0.10972;
         answer.clear();
 
       } else if(answer=="2") {   //arm_pos_work
-        target_pose1.position.x = 0.36;
-        target_pose1.position.y = -0.75;
+        target_pose1.position.x = 0.865833;
+        target_pose1.position.y = -0.89405;
         target_pose1.position.z = 1.27;
-        target_pose1.orientation.w = 0.2;
-        target_pose1.orientation.x = 0.69;
-        target_pose1.orientation.y = 0.21;
-        target_pose1.orientation.z = -0.66;
+        target_pose1.orientation.w = 0.709512;
+        target_pose1.orientation.x = -0.0456613;
+        target_pose1.orientation.y = 0.694586;
+        target_pose1.orientation.z = -0.109814;
         answer.clear();
+
+      } else if ("3" == answer)  {
+          move_group.attachObject(collision_object.id);
+
+
+      } else if ("4" == answer)  {
+          move_group.detachObject(collision_object.id);
+
 
       } else{
         std::cout << "> !!! Invalid answer, please try again. ";
@@ -301,6 +314,8 @@ int main(int argc, char** argv)
     /* Uncomment below line when working with a real robot */
     move_group.move();
   }
+
+
 // 
 
   ros::shutdown();
