@@ -121,7 +121,7 @@ int main(int argc, char** argv)
 
 
 
-/*
+
 
 
 
@@ -245,12 +245,12 @@ int main(int argc, char** argv)
   move_group.move();
 
 
-*/
+
 
 
 //                          add new object
 // Define a collision object ROS message.
-  std::cout << "any keyword" << std::endl;
+  std::cout << "next" << std::endl;
   std::cin >> xxxx;
   moveit_msgs::CollisionObject collision_object;
   collision_object.header.frame_id = move_group.getPlanningFrame();
@@ -291,7 +291,7 @@ int main(int argc, char** argv)
 
 
   //                                move the robot to the object
-  std::cout << "any keyword" << std::endl;
+  std::cout << "next" << std::endl;
   std::cin >> xxxx;
   moveit::planning_interface::MoveGroupInterface::Plan my_plan2;
   move_group.setStartState(*move_group.getCurrentState());
@@ -319,7 +319,7 @@ int main(int argc, char** argv)
 
   //                             attach the object
   // Now, let's attach the collision object to the robot.
-  std::cout << "any keyword" << std::endl;
+  std::cout << "next" << std::endl;
   std::cin >> xxxx;
   ROS_INFO_NAMED("tutorial","Attach the object to the robot");
   move_group.attachObject(collision_object.id);
@@ -334,7 +334,7 @@ int main(int argc, char** argv)
 
   //                           detach the object
   // Now, let's detach the collision object from the robot.
-  std::cout << "any keyword" << std::endl;
+  std::cout << "next" << std::endl;
   std::cin >> xxxx;
   ROS_INFO_NAMED("tutorial", "Detach the object from the robot");
   move_group.detachObject(collision_object.id);
