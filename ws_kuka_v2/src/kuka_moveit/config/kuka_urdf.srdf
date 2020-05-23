@@ -16,15 +16,35 @@
         <joint name="Joint4" />
         <joint name="Joint5" />
         <joint name="Joint6" />
+        <joint name="Joint7" />
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
-    <group_state name="robot_pos_init" group="robot_arm">
+    <group_state name="pos_init" group="robot_arm">
         <joint name="Joint1" value="0" />
         <joint name="Joint2" value="0" />
         <joint name="Joint3" value="0" />
         <joint name="Joint4" value="0" />
         <joint name="Joint5" value="0" />
         <joint name="Joint6" value="0" />
+        <joint name="Joint7" value="0" />
+    </group_state>
+    <group_state name="pos_random1" group="robot_arm">
+        <joint name="Joint1" value="-0.208" />
+        <joint name="Joint2" value="-1.0929" />
+        <joint name="Joint3" value="0.7807" />
+        <joint name="Joint4" value="0.6419" />
+        <joint name="Joint5" value="1.2317" />
+        <joint name="Joint6" value="0" />
+        <joint name="Joint7" value="0" />
+    </group_state>
+    <group_state name="pos_random2" group="robot_arm">
+        <joint name="Joint1" value="-0.208" />
+        <joint name="Joint2" value="2.2379" />
+        <joint name="Joint3" value="1.5787" />
+        <joint name="Joint4" value="-0.1908" />
+        <joint name="Joint5" value="-1.7175" />
+        <joint name="Joint6" value="1.5787" />
+        <joint name="Joint7" value="0" />
     </group_state>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="Virtual_Joint" type="fixed" parent_frame="World_Frame" child_link="base_link" />
@@ -36,5 +56,7 @@
     <disable_collisions link1="Link3" link2="Link4" reason="Adjacent" />
     <disable_collisions link1="Link4" link2="Link5" reason="Adjacent" />
     <disable_collisions link1="Link4" link2="Link6" reason="Never" />
+    <disable_collisions link1="Link4" link2="Link7" reason="Never" />
     <disable_collisions link1="Link5" link2="Link6" reason="Adjacent" />
+    <disable_collisions link1="Link6" link2="Link7" reason="Adjacent" />
 </robot>

@@ -103,6 +103,11 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          Link7:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           base_link:
             Alpha: 1
             Show Axes: false
@@ -183,6 +188,11 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          Link7:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           base_link:
             Alpha: 1
             Show Axes: false
@@ -209,7 +219,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 6.624306678771973
+      Distance: 5.662712097167969
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -224,10 +234,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.8447966575622559
+      Pitch: 0.6847968101501465
       Target Frame: base_link
       Value: XYOrbit (rviz)
-      Yaw: 5.049953460693359
+      Yaw: 5.559947490692139
     Saved: ~
 Window Geometry:
   Displays:

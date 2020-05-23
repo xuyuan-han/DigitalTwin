@@ -15,6 +15,7 @@ hardware_interface:
     - Joint4
     - Joint5
     - Joint6
+    - Joint7
   sim_control_mode: 1  # 0: position, 1: velocity
 # Publish all joint states
 # Creates the /joint_states topic necessary in ROS
@@ -33,3 +34,4 @@ controller_list:
       - Joint4
       - Joint5
       - Joint6
+      - Joint7
