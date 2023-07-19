@@ -1,0 +1,6 @@
+<launch>
+
+  <node name="moveKuka" pkg="kuka_moveit" type="moveKuka" respawn="false" output="screen">
+  </node>
+
+</launch>

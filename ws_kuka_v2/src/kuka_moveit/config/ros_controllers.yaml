@@ -34,4 +34,9 @@ controller_list:
       - Joint4
       - Joint5
       - Joint6
-      - Joint7
+  - name: EndEffector_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      []

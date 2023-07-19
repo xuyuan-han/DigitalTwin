@@ -1,3 +1,17 @@
+# Branch Management Scheme
+
+* Han Xuyuan's repo is the main repository. Everyone forks from the main repository to their own account.
+* Your remote repository only has the master branch. Your local repository has master and dev branches. Development is completed on the dev branch, and after testing, it's merged into the local master branch and pushed to the remote repository.
+* Pull request to Han Xuyuan's repo, which is managed and merged by Han Xuyuan and Deng Zhongzhu.
+
+# Specific Operation Methods
+
+* Fork to your account on the web version.
+* Clone to local git clone [your account repository]
+* Write and modify the code.
+* Push the modifications to the remote branch git push origin master
+* Request the main repository to merge on the web version.
+
 # 分支管理方案
 
 * 韩煦源的 repo 为主仓库, 大家从主仓库中 fork 到自己的账号下
